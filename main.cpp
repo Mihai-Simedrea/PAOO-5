@@ -12,10 +12,17 @@ class Widget {
     public:
         Widget(int val = 0) : value(val), pb(nullptr) {}
 
+        // Widget& operator=(const Widget& rhs) {
+        //     if (this == &rhs) return *this; // check for self-assignment
+        //     delete pb;
+        //     pb = new Bitmap(*rhs.pb);
+        //     return *this;
+        // }
+
         Widget& operator=(const Widget& rhs) {
-            if (this == &rhs) return *this; // check for self-assignment
-            delete pb;
-            pb = new Bitmap(*rhs.pb);
+            Bitmap* pOrig = pb; // remember original pb
+            pb = new Bitmap(*rhs.pb); // point pb to a copy of rhs's bitmap
+            delete pOrig; // delete original pb
             return *this;
         }
 
