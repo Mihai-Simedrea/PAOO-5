@@ -12,6 +12,11 @@ class Widget {
     public:
         Widget(int val = 0) : value(val), pb(nullptr) {}
 
+        void swap(Widget& other) {
+            std::swap(value, other.value);
+            std::swap(pb, other.pb);
+        }
+
         // Widget& operator=(const Widget& rhs) {
         //     if (this == &rhs) return *this; // check for self-assignment
         //     delete pb;
@@ -19,10 +24,16 @@ class Widget {
         //     return *this;
         // }
 
+        // Widget& operator=(const Widget& rhs) {
+        //     Bitmap* pOrig = pb; // remember original pb
+        //     pb = new Bitmap(*rhs.pb); // point pb to a copy of rhs's bitmap
+        //     delete pOrig; // delete original pb
+        //     return *this;
+        // }
+
         Widget& operator=(const Widget& rhs) {
-            Bitmap* pOrig = pb; // remember original pb
-            pb = new Bitmap(*rhs.pb); // point pb to a copy of rhs's bitmap
-            delete pOrig; // delete original pb
+            Widget temp(rhs); // make a copy of rhs's data
+            swap(temp); // swap *this's data with the copy's
             return *this;
         }
 
