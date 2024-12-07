@@ -2,17 +2,22 @@
 
 using namespace std;
 
+class Bitmap {};
+
 class Widget {
     private:
         int value;
+        Bitmap *pb;
 
     public:
         Widget(int val = 0) : value(val) {}
 
-        Widget& operator=(const Widget& rhs) {
-            value = rhs.value;
-            return *this;
-        }
+        // unexpected behaviour 
+        // Widget& operator=(const Widget& rhs) {
+        //     delete pb;
+        //     pb = new Bitmap(*rhs.pb);
+        //     return *this;
+        // }
 
         void display() const {
             cout << "Value: " << value << endl;
