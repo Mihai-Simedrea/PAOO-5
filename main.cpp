@@ -1,3 +1,8 @@
+// item 10 - done
+// item 11 - done
+// item 12 - 
+
+
 #include <iostream>
 
 using namespace std;
