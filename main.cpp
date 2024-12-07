@@ -10,14 +10,14 @@ class Widget {
         Bitmap *pb;
 
     public:
-        Widget(int val = 0) : value(val) {}
+        Widget(int val = 0) : value(val), pb(nullptr) {}
 
-        // unexpected behaviour 
-        // Widget& operator=(const Widget& rhs) {
-        //     delete pb;
-        //     pb = new Bitmap(*rhs.pb);
-        //     return *this;
-        // }
+        Widget& operator=(const Widget& rhs) {
+            if (this == &rhs) return *this; // check for self-assignment
+            delete pb;
+            pb = new Bitmap(*rhs.pb);
+            return *this;
+        }
 
         void display() const {
             cout << "Value: " << value << endl;
